@@ -165,7 +165,7 @@ def FYP_decoder(pretrained='',**kwargs):
     return model    
     
 def FYP_feature_extractor(pretrained='',**kwargs):
-    model = BLIP_Base(**kwargs)
+    model = FYP_Base(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
         assert(len(msg.missing_keys)==0)
