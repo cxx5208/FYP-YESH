@@ -1,7 +1,7 @@
 from models.med import BertConfig
 from models.nlvr_encoder import BertModel
 from models.vit import interpolate_pos_embed
-from models.blip import create_vit, init_tokenizer, is_url
+from models.FYP import create_vit, init_tokenizer, is_url
 
 from timm.models.hub import download_cached_file
 
@@ -11,7 +11,7 @@ import torch.nn.functional as F
 from transformers import BertTokenizer
 import numpy as np
 
-class BLIP_NLVR(nn.Module):
+class FYP_NLVR(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 480,
@@ -19,12 +19,7 @@ class BLIP_NLVR(nn.Module):
                  vit_grad_ckpt = False,
                  vit_ckpt_layer = 0,                   
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+         
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer, drop_path_rate=0.1)
@@ -64,7 +59,7 @@ class BLIP_NLVR(nn.Module):
         else:
             return prediction
     
-def blip_nlvr(pretrained='',**kwargs):
+def FYP_nlvr(pretrained='',**kwargs):
     model = BLIP_NLVR(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
