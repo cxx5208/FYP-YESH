@@ -163,7 +163,7 @@ class FYP_VQA(nn.Module):
     
     
 def FYP_vqa(pretrained='',**kwargs):
-    model = BLIP_VQA(**kwargs)
+    model = FYP_VQA(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
 #         assert(len(msg.missing_keys)==0)
