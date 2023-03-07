@@ -1,5 +1,5 @@
 from models.med import BertConfig, BertModel, BertLMHeadModel
-from models.blip import create_vit, init_tokenizer, load_checkpoint
+from models.FYP import create_vit, init_tokenizer, load_checkpoint
 
 import torch
 from torch import nn
@@ -7,7 +7,7 @@ import torch.nn.functional as F
 from transformers import BertTokenizer
 import numpy as np
 
-class BLIP_VQA(nn.Module):
+class FYP_VQA(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 480,
@@ -15,12 +15,7 @@ class BLIP_VQA(nn.Module):
                  vit_grad_ckpt = False,
                  vit_ckpt_layer = 0,                   
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+                 
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit, image_size, vit_grad_ckpt, vit_ckpt_layer, drop_path_rate=0.1)
@@ -167,7 +162,7 @@ class BLIP_VQA(nn.Module):
         return max_ids
     
     
-def blip_vqa(pretrained='',**kwargs):
+def FYP_vqa(pretrained='',**kwargs):
     model = BLIP_VQA(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
