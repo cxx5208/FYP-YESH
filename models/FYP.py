@@ -13,7 +13,7 @@ import os
 from urllib.parse import urlparse
 from timm.models.hub import download_cached_file
 
-class BLIP_Base(nn.Module):
+class FYP_Base(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 224,
@@ -21,12 +21,7 @@ class BLIP_Base(nn.Module):
                  vit_grad_ckpt = False,
                  vit_ckpt_layer = 0,                 
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+                 
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer)
@@ -68,7 +63,7 @@ class BLIP_Base(nn.Module):
         
         
         
-class BLIP_Decoder(nn.Module):
+class FYP_Decoder(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 384,
@@ -162,14 +157,14 @@ class BLIP_Decoder(nn.Module):
         return captions
     
 
-def blip_decoder(pretrained='',**kwargs):
+def FYP_decoder(pretrained='',**kwargs):
     model = BLIP_Decoder(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
         assert(len(msg.missing_keys)==0)
     return model    
     
-def blip_feature_extractor(pretrained='',**kwargs):
+def FYP_feature_extractor(pretrained='',**kwargs):
     model = BLIP_Base(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
