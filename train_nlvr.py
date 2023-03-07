@@ -24,7 +24,7 @@ from torch.utils.data import DataLoader
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 
-from models.blip_nlvr import blip_nlvr
+from models.FYP_nlvr import FYP_nlvr
 
 import utils
 from utils import cosine_lr_schedule, warmup_lr_schedule
@@ -121,7 +121,7 @@ def main(args, config):
 
     #### Model #### 
     print("Creating model")
-    model = blip_nlvr(pretrained=config['pretrained'], image_size=config['image_size'], 
+    model = FYP_nlvr(pretrained=config['pretrained'], image_size=config['image_size'], 
                          vit=config['vit'], vit_grad_ckpt=config['vit_grad_ckpt'], vit_ckpt_layer=config['vit_ckpt_layer'])
 
     model = model.to(device)   
