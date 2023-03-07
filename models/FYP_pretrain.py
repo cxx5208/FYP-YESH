@@ -7,9 +7,9 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.blip import create_vit, init_tokenizer, load_checkpoint
+from models.FYP import create_vit, init_tokenizer, load_checkpoint
 
-class BLIP_Pretrain(nn.Module):
+class FYP_Pretrain(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/bert_config.json',  
                  image_size = 224,
@@ -20,12 +20,7 @@ class BLIP_Pretrain(nn.Module):
                  queue_size = 57600,
                  momentum = 0.995,
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+                  
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer, 0)
@@ -240,8 +235,8 @@ class BLIP_Pretrain(nn.Module):
         self.queue_ptr[0] = ptr 
 
 
-def blip_pretrain(**kwargs):
-    model = BLIP_Pretrain(**kwargs)
+def FYP_pretrain(**kwargs):
+    model = FYP_Pretrain(**kwargs)
     return model 
 
 
