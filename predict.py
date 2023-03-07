@@ -1,9 +1,3 @@
-"""
-Download the weights in ./checkpoints beforehand for fast inference
-wget https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model*_base_caption.pth
-wget https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model*_vqa.pth
-wget https://storage.googleapis.com/sfr-vision-language-research/BLIP/models/model_base_retrieval_coco.pth
-"""
 
 from pathlib import Path
 
@@ -13,9 +7,9 @@ from torchvision import transforms
 from torchvision.transforms.functional import InterpolationMode
 import cog
 
-from models.blip import blip_decoder
-from models.blip_vqa import blip_vqa
-from models.blip_itm import blip_itm
+from models.FYP import blip_decoder
+from models.FYP_vqa import FYP_vqa
+from models.FYP_itm import FYP_itm
 
 
 class Predictor(cog.Predictor):
