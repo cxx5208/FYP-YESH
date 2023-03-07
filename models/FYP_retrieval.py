@@ -5,9 +5,9 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.blip import create_vit, init_tokenizer, load_checkpoint
+from models.FYP import create_vit, init_tokenizer, load_checkpoint
 
-class BLIP_Retrieval(nn.Module):
+class FYP_Retrieval(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 384,
@@ -19,12 +19,7 @@ class BLIP_Retrieval(nn.Module):
                  momentum = 0.995,
                  negative_all_rank = False,
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+                  
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer)
@@ -272,10 +267,7 @@ def blip_retrieval(pretrained='',**kwargs):
 
 @torch.no_grad()
 def concat_all_gather(tensor):
-    """
-    Performs all_gather operation on the provided tensors.
-    *** Warning ***: torch.distributed.all_gather has no gradient.
-    """
+    
     tensors_gather = [torch.ones_like(tensor)
         for _ in range(torch.distributed.get_world_size())]
     torch.distributed.all_gather(tensors_gather, tensor, async_op=False)
@@ -285,10 +277,7 @@ def concat_all_gather(tensor):
 
 
 class GatherLayer(torch.autograd.Function):
-    """
-    Gather tensors from all workers with support for backward propagation:
-    This implementation does not cut the gradients as torch.distributed.all_gather does.
-    """
+    
 
     @staticmethod
     def forward(ctx, x):
