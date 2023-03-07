@@ -158,7 +158,7 @@ class FYP_Decoder(nn.Module):
     
 
 def FYP_decoder(pretrained='',**kwargs):
-    model = FYp_Decoder(**kwargs)
+    model = FYP_Decoder(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
         assert(len(msg.missing_keys)==0)
