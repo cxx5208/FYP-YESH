@@ -1,10 +1,3 @@
-'''
- * Copyright (c) 2022, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- * By Junnan Li
-'''
 import argparse
 import os
 import ruamel_yaml as yaml
@@ -22,7 +15,7 @@ import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 from torch.utils.data import DataLoader
 
-from models.blip import blip_decoder
+from models.FYP import FYP_decoder
 import utils
 from data import create_dataset, create_sampler, create_loader
 from data.utils import save_result
@@ -79,7 +72,7 @@ def main(args, config):
 
     #### Model #### 
     print("Creating model")
-    model = blip_decoder(pretrained=config['pretrained'], image_size=config['image_size'], vit=config['vit'], 
+    model = FYP_decoder(pretrained=config['pretrained'], image_size=config['image_size'], vit=config['vit'], 
                            prompt=config['prompt'])
 
     model = model.to(device)   
