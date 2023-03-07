@@ -1,10 +1,4 @@
-'''
- * Copyright (c) 2022, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- * By Junnan Li
-'''
+
 import argparse
 import os
 import ruamel_yaml as yaml
@@ -22,7 +16,7 @@ import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 from torch.utils.data import DataLoader
 
-from models.blip_retrieval import blip_retrieval
+from models.FYP_retrieval import FYP_retrieval
 import utils
 from data.video_dataset import VideoDataset
 
