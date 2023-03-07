@@ -1,10 +1,4 @@
-'''
- * Copyright (c) 2022, salesforce.com, inc.
- * All rights reserved.
- * SPDX-License-Identifier: BSD-3-Clause
- * For full license text, see LICENSE.txt file in the repo root or https://opensource.org/licenses/BSD-3-Clause
- * By Junnan Li
-'''
+
 import argparse
 import os
 import ruamel_yaml as yaml
@@ -22,7 +16,7 @@ from torch.utils.data import DataLoader
 import torch.backends.cudnn as cudnn
 import torch.distributed as dist
 
-from models.blip_vqa import blip_vqa
+from models.FYP_vqa import FYP_vqa
 import utils
 from utils import cosine_lr_schedule
 from data import create_dataset, create_sampler, create_loader
@@ -123,7 +117,7 @@ def main(args, config):
                                               collate_fns=[vqa_collate_fn,None]) 
     #### Model #### 
     print("Creating model")
-    model = blip_vqa(pretrained=config['pretrained'], image_size=config['image_size'], 
+    model = FYP_vqa(pretrained=config['pretrained'], image_size=config['image_size'], 
                        vit=config['vit'], vit_grad_ckpt=config['vit_grad_ckpt'], vit_ckpt_layer=config['vit_ckpt_layer'])
 
     model = model.to(device)   
