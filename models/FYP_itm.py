@@ -5,9 +5,9 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.blip import create_vit, init_tokenizer, load_checkpoint
+from models.FYP import create_vit, init_tokenizer, load_checkpoint
 
-class BLIP_ITM(nn.Module):
+class FYP_ITM(nn.Module):
     def __init__(self,                 
                  med_config = 'configs/med_config.json',  
                  image_size = 384,
@@ -16,12 +16,7 @@ class BLIP_ITM(nn.Module):
                  vit_ckpt_layer = 0,                      
                  embed_dim = 256,     
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """               
+        
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer)
@@ -67,8 +62,8 @@ class BLIP_ITM(nn.Module):
             return sim
         
         
-def blip_itm(pretrained='',**kwargs):
-    model = BLIP_ITM(**kwargs)
+def FYP_itm(pretrained='',**kwargs):
+    model = FYP_ITM(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
         assert(len(msg.missing_keys)==0)
