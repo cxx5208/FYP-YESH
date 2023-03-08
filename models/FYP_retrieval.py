@@ -256,8 +256,8 @@ class FYP_Retrieval(nn.Module):
         self.ptr_queue[0] = ptr  
 
 
-def blip_retrieval(pretrained='',**kwargs):
-    model = BLIP_Retrieval(**kwargs)
+def FYP_retrieval(pretrained='',**kwargs):
+    model = FYP_Retrieval(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
         print("missing keys:")
