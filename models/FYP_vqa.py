@@ -39,10 +39,7 @@ class FYP_VQA(nn.Module):
         question.input_ids[:,0] = self.tokenizer.enc_token_id
         
         if train:               
-            '''
-            n: number of answers for each question
-            weights: weight for each answer
-            '''                     
+          
             answer = self.tokenizer(answer, padding='longest', return_tensors="pt").to(image.device) 
             answer.input_ids[:,0] = self.tokenizer.bos_token_id
             answer_targets = answer.input_ids.masked_fill(answer.input_ids == self.tokenizer.pad_token_id, -100)      
@@ -122,15 +119,11 @@ class FYP_VQA(nn.Module):
                                          encoder_attention_mask = question_atts,                                      
                                          return_dict = True,
                                          reduction = 'none')              
-        logits = start_output.logits[:,0,:] # first token's logit
-        
-        # topk_probs: top-k probability 
-        # topk_ids: [num_question, k]        
+        logits = start_output.logits[:,0,:]   
         answer_first_token = answer_ids[:,1]
         prob_first_token = F.softmax(logits,dim=1).index_select(dim=1, index=answer_first_token) 
         topk_probs, topk_ids = prob_first_token.topk(k,dim=1) 
-        
-        # answer input: [num_question*k, answer_len]                 
+
         input_ids = []
         input_atts = []
         for b, topk_id in enumerate(topk_ids):
@@ -141,7 +134,6 @@ class FYP_VQA(nn.Module):
 
         targets_ids = input_ids.masked_fill(input_ids == self.tokenizer.pad_token_id, -100)
 
-        # repeat encoder's output for top-k answers
         question_states = tile(question_states, 0, k)
         question_atts = tile(question_atts, 0, k)
         
@@ -166,7 +158,6 @@ def FYP_vqa(pretrained='',**kwargs):
     model = FYP_VQA(**kwargs)
     if pretrained:
         model,msg = load_checkpoint(model,pretrained)
-#         assert(len(msg.missing_keys)==0)
     return model  
 
 
