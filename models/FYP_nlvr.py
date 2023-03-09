@@ -1,7 +1,7 @@
 from models.med import BertConfig
 from models.nlvr_encoder import BertModel
 from models.vit import interpolate_pos_embed
-from models.FYP import create_vit, init_tokenizer, is_url
+from models.FYP import create_vit, init_tokenizer, is_url 
 
 from timm.models.hub import download_cached_file
 
