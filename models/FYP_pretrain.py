@@ -7,7 +7,7 @@ import torch
 from torch import nn
 import torch.nn.functional as F
 
-from models.FYP import create_vit, init_tokenizer, load_checkpoint
+from models.FYP import create_vit, init_tokenizer, load_checkpoint 
 
 class FYP_Pretrain(nn.Module):
     def __init__(self,                 
