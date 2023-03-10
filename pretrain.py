@@ -94,7 +94,7 @@ def main(args, config):
 
     #### Model #### 
     print("Creating model")
-    model = blip_pretrain(image_size=config['image_size'], vit=config['vit'], vit_grad_ckpt=config['vit_grad_ckpt'], 
+    model = FYP_pretrain(image_size=config['image_size'], vit=config['vit'], vit_grad_ckpt=config['vit_grad_ckpt'], 
                             vit_ckpt_layer=config['vit_ckpt_layer'], queue_size=config['queue_size'])
 
     model = model.to(device)   
