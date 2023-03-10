@@ -72,12 +72,7 @@ class FYP_Decoder(nn.Module):
                  vit_ckpt_layer = 0,
                  prompt = 'a picture of ',
                  ):
-        """
-        Args:
-            med_config (str): path for the mixture of encoder-decoder model's configuration file
-            image_size (int): input image size
-            vit (str): model size of vision transformer
-        """            
+ 
         super().__init__()
         
         self.visual_encoder, vision_width = create_vit(vit,image_size, vit_grad_ckpt, vit_ckpt_layer)
