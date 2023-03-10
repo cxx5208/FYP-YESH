@@ -1,6 +1,5 @@
 from models.med import BertConfig, BertModel, BertLMHeadModel
 from models.FYP import create_vit, init_tokenizer, load_checkpoint
-
 import torch
 from torch import nn
 import torch.nn.functional as F
