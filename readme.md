@@ -1,5 +1,5 @@
-**CREATING A UNIFIED FRAMEWORK FOR VISION LANGUAGE PRE-TRAINING DOWNSTREAM TASKS
-**
+**CREATING A UNIFIED FRAMEWORK FOR VISION LANGUAGE PRE-TRAINING DOWNSTREAM TASKS**
+
 **ABSTRACT:**
 The use of Vision-Language Pre-training (VLP) has considerably enhanced the
 efficiency of many vision-language tasks. However, existing pre-trained models have
