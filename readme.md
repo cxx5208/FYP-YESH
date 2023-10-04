@@ -1,3 +1,5 @@
+CREATING A UNIFIED FRAMEWORK FOR VISION LANGUAGE PRE-TRAINING DOWNSTREAM TASKS
+
 **ABSTRACT:**
 The use of Vision-Language Pre-training (VLP) has considerably enhanced the
 efficiency of many vision-language tasks. However, existing pre-trained models have
@@ -15,9 +17,11 @@ VQA score. Furthermore, this new framework shows a robust generalization ability
 it can be directly transferred to video-language tasks in a zero-shot approach.
 
 **Model Architecture:**
+
 <img width="668" alt="Screen Shot 2023-10-03 at 5 03 14 PM" src="https://github.com/cxx5208/FYP-YESH/assets/76988460/5e5b5482-7f8e-4613-92df-c24849a5adf9">
 
 **Results:**
+
 <img width="542" alt="Screen Shot 2023-10-03 at 5 04 23 PM" src="https://github.com/cxx5208/FYP-YESH/assets/76988460/09febd8b-7a1b-425e-9202-701852d7f225">
 <img width="540" alt="Screen Shot 2023-10-03 at 5 05 02 PM" src="https://github.com/cxx5208/FYP-YESH/assets/76988460/5168bb8e-5d68-4237-812e-7e5185eadf09">
 
